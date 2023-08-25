@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Import Vue 3 -->
+    <script src="static/assets/vue3.js"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="static/assets/element-plus.css">
+    <!-- import JavaScript -->
+    <script src="static/assets/element-plus.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-button type="primary">{{msg}}</el-button>
+    </div>
+    <script>
+        const { createApp, ref } = Vue;
+        //import { createApp, ref } from 'vue';
+        const App = {
+            template: '#work',
+            setup() {
+                const msg = ref('Hello world')
+
+                return {
+                    msg,
+                }
+            }
+
+        };
+        const app = createApp(App);
+        app.use(ElementPlus);
+        app.mount("#app");
+    </script>
+
+</body>
+
+</html>

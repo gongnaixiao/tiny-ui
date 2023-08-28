@@ -73,7 +73,9 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import RightToolbar from '../../components/RightToolbar/index.vue'
-import { getDataList } from '../../hooks/table.mjs'
+import { fetchList } from '../../api/post.mjs'
+import { useTable } from '../../hooks/use-table/table.mjs'
+
 // 搜索变量
 const queryRef = ref()
 const showSearch = ref(true)
@@ -82,14 +84,13 @@ const selectObjs = ref([])
 const multiple = ref(true)
 
 const state = reactive({
-  queryForm: {}
-  //pageList: fetchList
+  queryForm: {},
+  pageList: fetchList
 })
 
-//执行查询
-onMounted(() => {
-  getDataList(state)
-})
+//  table hook
+const { getDataList, currentChangeHandle, sizeChangeHandle, downBlobFile, tableStyle } =
+  useTable(state)
 
 // 清空搜索条件
 const resetQuery = () => {

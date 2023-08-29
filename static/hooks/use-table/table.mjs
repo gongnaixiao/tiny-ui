@@ -81,7 +81,7 @@ export function useTable(options) {
                 state.pagination && (state.pagination.total = state.isPage ? res.data[state.props.totalCount] : 0);
             } catch (err) {
                 // 捕获异常并显示错误提示
-                //ElMessage.error(err.msg || err.data.msg);
+                ElMessage.error(err);
             } finally {
                 // 结束加载数据，设置state.loading为false
                 state.loading = false;

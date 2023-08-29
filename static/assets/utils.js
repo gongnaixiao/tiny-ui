@@ -14,7 +14,8 @@ function getVueFile(url, options) {
       moduleCache: {
         vue: Vue,
         ElementPlus: ElementPlus,
-        ElementPlusIconsVue: ElementPlusIconsVue
+        ElementPlusIconsVue: ElementPlusIconsVue,
+        VueI18n: VueI18n
       },
       async getFile(url) {
         const res = await fetch(url)

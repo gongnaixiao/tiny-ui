@@ -1,5 +1,6 @@
 import { useFetch } from '../hooks/use-fetch/index.mjs'
 
+
 export const fetchList = async (query) => {
 	return await useFetch(
 		'/admin/post/page',
@@ -17,13 +18,13 @@ export const fetchList = async (query) => {
 // 	});
 // };
 
-// export function addObj(obj?: Object) {
-// 	return request({
-// 		url: '/admin/post',
-// 		method: 'post',
-// 		data: obj,
-// 	});
-// }
+export function addObj(obj) {
+	return request({
+		url: '/admin/post',
+		method: 'post',
+		data: obj,
+	});
+}
 
 // export function getObj(id?: string) {
 // 	return request({
@@ -40,48 +41,49 @@ export const fetchList = async (query) => {
 // 	});
 // }
 
-// export function delObj(ids?: object) {
-// 	return request({
-// 		url: '/admin/post',
-// 		method: 'delete',
-// 		data: ids,
-// 	});
-// }
+export const delObj = async (ids) => {
+	return await useFetch(
+		'/admin/post',
+		{
+			method: 'delete',
+			data: ids,
+		});
+}
 
-// export function putObj(obj?: Object) {
-// 	return request({
-// 		url: '/admin/post',
-// 		method: 'put',
-// 		data: obj,
-// 	});
-// }
+export function putObj(obj) {
+	return request({
+		url: '/admin/post',
+		method: 'put',
+		data: obj,
+	});
+}
 
-// export function validatePostName(rule: any, value: any, callback: any, isEdit: boolean) {
-// 	if (isEdit) {
-// 		return callback();
-// 	}
+export function validatePostName(rule, value, callback, isEdit) {
+	if (isEdit) {
+		return callback();
+	}
 
-// 	getObjDetails({ postName: value }).then((response) => {
-// 		const result = response.data;
-// 		if (result !== null) {
-// 			callback(new Error('岗位名称已经存在'));
-// 		} else {
-// 			callback();
-// 		}
-// 	});
-// }
+	getObjDetails({ postName: value }).then((response) => {
+		const result = response.data;
+		if (result !== null) {
+			callback(new Error('岗位名称已经存在'));
+		} else {
+			callback();
+		}
+	});
+}
 
-// export function validatePostCode(rule: any, value: any, callback: any, isEdit: boolean) {
-// 	if (isEdit) {
-// 		return callback();
-// 	}
+export function validatePostCode(rule, value, callback, isEdit) {
+	if (isEdit) {
+		return callback();
+	}
 
-// 	getObjDetails({ postCode: value }).then((response) => {
-// 		const result = response.data;
-// 		if (result !== null) {
-// 			callback(new Error('岗位编码已经存在'));
-// 		} else {
-// 			callback();
-// 		}
-// 	});
-//}
+	getObjDetails({ postCode: value }).then((response) => {
+		const result = response.data;
+		if (result !== null) {
+			callback(new Error('岗位编码已经存在'));
+		} else {
+			callback();
+		}
+	});
+}

@@ -1,5 +1,5 @@
 const instance = axios.create({
-  baseURL: 'http://localhost:9000/',
+  baseURL: 'http://localhost:9001/',
   timeout: 20000
 })
 export const useFetch = (url, config = {}) => {
@@ -18,7 +18,6 @@ export const useFetch = (url, config = {}) => {
           break
       }
     }).catch((e) => {
-      console.log("useFetch")
       reject(e)
     })
   })

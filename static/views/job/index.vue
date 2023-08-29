@@ -61,21 +61,32 @@
           type="primary"
           >修改
         </el-button>
-
         <el-button icon="delete" @click="handleDelete([scope.row.postId])" text type="primary"
           >删除
         </el-button>
       </template>
     </el-table-column>
   </el-table>
+  <pagination
+    @current-change="currentChangeHandle"
+    @size-change="sizeChangeHandle"
+    v-bind="state.pagination"
+  />
+
+  <!-- 编辑、新增  -->
+  <form-dialog @refresh="getDataList()" ref="formDialogRef" />
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive } from 'vue'
 import RightToolbar from '../../components/RightToolbar/index.vue'
-import { fetchList } from '../../api/post.mjs'
+import Pagination from '../../components/Pagination/index.vue'
+import { fetchList, delObj } from '../../api/post.mjs'
 import { useTable } from '../../hooks/use-table/table.mjs'
+import { useMessage, useMessageBox } from '../../hooks/use-msg/message.mjs'
 
+// 引入组件
+const FormDialog = Vue.defineAsyncComponent(() => import('./form.vue'))
 // 搜索变量
 const queryRef = ref()
 const showSearch = ref(true)
@@ -87,6 +98,9 @@ const state = reactive({
   queryForm: {},
   pageList: fetchList
 })
+
+// 定义变量内容
+const formDialogRef = ref()
 
 //  table hook
 const { getDataList, currentChangeHandle, sizeChangeHandle, downBlobFile, tableStyle } =
@@ -106,5 +120,23 @@ const exportExcel = () => {
 const handleSelectionChange = (objs) => {
   selectObjs.value = objs.map(({ postId }) => postId)
   multiple.value = !objs.length
+}
+
+// 删除操作
+const handleDelete = async (ids) => {
+  console.log(ids)
+  try {
+    await useMessageBox().confirm('此操作将永久删除')
+  } catch {
+    return
+  }
+
+  try {
+    await delObj(ids)
+    getDataList()
+    useMessage().success('删除成功')
+  } catch (err) {
+    useMessage().error(err)
+  }
 }
 </script>

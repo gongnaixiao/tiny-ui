@@ -15,7 +15,8 @@ function getVueFile(url, options) {
         vue: Vue,
         ElementPlus: ElementPlus,
         ElementPlusIconsVue: ElementPlusIconsVue,
-        VueI18n: VueI18n
+        VueI18n: VueI18n,
+        VueRouter: VueRouter,
       },
       async getFile(url) {
         const res = await fetch(url)

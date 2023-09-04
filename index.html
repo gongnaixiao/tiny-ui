@@ -10,6 +10,7 @@
     <!-- import CSS -->
     <link rel="stylesheet" href="static/assets/element-plus.css">
     <!-- import JavaScript -->
+    <script src="static/assets/vue-router.global.js"></script>
     <script src="static/assets/element-plus.js"></script>
     <script src="static/assets/vue3-sfc-loader.js"></script>
     <script src="static/assets/vue-demi.js"></script>
@@ -17,7 +18,7 @@
     <script src="static/assets/axios.min.js"></script>
     <script src="static/assets/vue-i18n.global.js"></script>
     <script src="static/assets/utils.js"></script>
-    <!-- <script src="static/assets/tailwindcss.js"></script> -->
+    <script src="static/assets/tailwindcss.js"></script>
 </head>
 
 <body>
@@ -25,21 +26,7 @@
         <my-page></my-page>
     </div>
 </body>
-<script>
-    const { createApp } = Vue
-    const { loadModule } = window['vue3-sfc-loader']
-
-    const app = createApp({
-        components: {
-            // 引入页面
-            'my-page': getVueFile('./static/views/App.vue')
-        }
-    })
-    app.use(ElementPlus);
-    app.mount('#app')
-    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-        app.component(key, component)
-    }
+<script src="static/main.mjs">
 </script>
 
 </html>

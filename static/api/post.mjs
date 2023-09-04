@@ -10,36 +10,31 @@ export const fetchList = async (query) => {
 		});
 };
 
-// export const list = (params?: Object) => {
-// 	return request({
-// 		url: '/admin/post/list',
-// 		method: 'get',
-// 		params,
-// 	});
-// };
-
-export function addObj(obj) {
-	return request({
-		url: '/admin/post',
-		method: 'post',
-		data: obj,
-	});
+export async function addObj(obj) {
+	return await useFetch(
+		'/admin/post',
+		{
+			method: 'post',
+			data: obj,
+		});
 }
 
-// export function getObj(id?: string) {
-// 	return request({
-// 		url: '/admin/post/details/' + id,
-// 		method: 'get',
-// 	});
-// }
+export async function getObj(id) {
+	return await useFetch(
+		'/admin/post/details/' + id,
+		{
+			method: 'get',
+		});
+}
 
-// export function getObjDetails(obj?: object) {
-// 	return request({
-// 		url: '/admin/post/details',
-// 		method: 'get',
-// 		params: obj,
-// 	});
-// }
+export async function getObjDetails(object) {
+	return await useFetch(
+		'/admin/post/details',
+		{
+			method: 'get',
+			params: obj,
+		});
+}
 
 export const delObj = async (ids) => {
 	return await useFetch(
@@ -50,12 +45,13 @@ export const delObj = async (ids) => {
 		});
 }
 
-export function putObj(obj) {
-	return request({
-		url: '/admin/post',
-		method: 'put',
-		data: obj,
-	});
+export async function putObj(obj) {
+	return await useFetch(
+		'/admin/post',
+		{
+			method: 'put',
+			data: obj,
+		});
 }
 
 export function validatePostName(rule, value, callback, isEdit) {

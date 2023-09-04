@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { useMessage } from '../../hooks/use-msg/message.mjs'
 import { getObj, addObj, putObj, validatePostCode, validatePostName } from '../../api/post.mjs'
 
